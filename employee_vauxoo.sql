@@ -6,6 +6,7 @@
 -- DROP TABLE employee;
 -- DROP TABLE employee_department;
 -- DROP TABLE employee_hobby;
+-- DROP TABLE employee_hobbies;
 
 CREATE TABLE employee_department (
 	id serial PRIMARY KEY,
@@ -20,8 +21,16 @@ CREATE TABLE employee (
 	last_name varchar (50) NOT NULL
 );
 
-
 CREATE TABLE employee_hobby (
+	id serial PRIMARY KEY,
+	name varchar (50) NOT NULL,
+	description varchar (100) NOT NULL
+);
+
+CREATE TABLE employee_hobbies (
+	employee_id integer REFERENCES employee,
+	hobby_id integer REFERENCES employee_hobby,
+	PRIMARY KEY (employee_id, hobby_id)
 );
 
 INSERT INTO employee_department (name, description) VALUES ('jugueteria', 'departamento de jugueteria');
@@ -35,3 +44,16 @@ INSERT INTO employee (first_name, last_name, department_id) VALUES ('jose', 'rob
 INSERT INTO employee (first_name, last_name, department_id) VALUES ('victor', 'cardona', 4);
 INSERT INTO employee (first_name, last_name, department_id) VALUES ('manuel', 'damian', 1);
 INSERT INTO employee (first_name, last_name, department_id) VALUES ('francisco', 'chacon', 6);
+
+INSERT INTO employee_hobby (name, description) VALUES ('lectura', 'leer libros');
+INSERT INTO employee_hobby (name, description) VALUES ('videojuegos', 'jugar videojuegos');
+INSERT INTO employee_hobby (name, description) VALUES ('peliculas', 'ver peliculas');
+
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (1, 1);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (1, 2);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (2, 3);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (2, 1);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (3, 2);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (3, 3);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (4, 1);
+INSERT INTO employee_hobbies (employee_id, hobby_id) VALUES (4, 3);
