@@ -3,10 +3,11 @@
 --       You can create database locally to test it.
 --       Consider add ';' at end sentence.
 
+-- DROP TABLE employee_hobbies;
 -- DROP TABLE employee;
 -- DROP TABLE employee_department;
 -- DROP TABLE employee_hobby;
--- DROP TABLE employee_hobbies;
+
 
 CREATE TABLE employee_department (
 	id serial PRIMARY KEY,
@@ -17,6 +18,7 @@ CREATE TABLE employee_department (
 CREATE TABLE employee (
 	id serial PRIMARY KEY,
 	department_id integer REFERENCES employee_department,
+	boss integer REFERENCES employee,
 	first_name varchar (50) NOT NULL,
 	last_name varchar (50) NOT NULL
 );
@@ -40,10 +42,10 @@ INSERT INTO employee_department (name, description) VALUES ('ropa', 'departament
 INSERT INTO employee_department (name, description) VALUES ('perfumeria', 'departamento de perfumeria');
 INSERT INTO employee_department (name, description) VALUES ('libros', 'departamento de libros');
 
-INSERT INTO employee (first_name, last_name, department_id) VALUES ('jose', 'robles', 2);
-INSERT INTO employee (first_name, last_name, department_id) VALUES ('victor', 'cardona', 4);
-INSERT INTO employee (first_name, last_name, department_id) VALUES ('manuel', 'damian', 1);
-INSERT INTO employee (first_name, last_name, department_id) VALUES ('francisco', 'chacon', 6);
+INSERT INTO employee (first_name, last_name, department_id, boss) VALUES ('jose', 'robles', 2, 1);
+INSERT INTO employee (first_name, last_name, department_id, boss) VALUES ('victor', 'cardona', 4, 1);
+INSERT INTO employee (first_name, last_name, department_id, boss) VALUES ('manuel', 'damian', 1, 2);
+INSERT INTO employee (first_name, last_name, department_id, boss) VALUES ('francisco', 'chacon', 6, 2);
 
 INSERT INTO employee_hobby (name, description) VALUES ('lectura', 'leer libros');
 INSERT INTO employee_hobby (name, description) VALUES ('videojuegos', 'jugar videojuegos');
